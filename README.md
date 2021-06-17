@@ -1,21 +1,30 @@
-![React Logo](https://github.com/vercel/vercel/blob/master/packages/frameworks/logos/react.svg)
+# hello-world-react-vercel
 
-# React Example
+A starter repository with react and serverside API
 
-This directory is a brief example of a [React](https://reactjs.org/) app with [Serverless Functions](https://vercel.com/docs/v2/serverless-functions/introduction) that can be deployed with Vercel and zero configuration.
+## getting started
 
-## Deploy Your Own
+### install node
+https://nodejs.org/en/download/
 
-Deploy your own React project, along with Serverless Functions, with Vercel.
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/vercel/vercel/tree/main/examples/create-react-app-functions)
-
-_Live Example: https://create-react-app.now-examples.now.sh/_
-
-### How We Created This Example
-
-To get started with React, along with [Serverless Functions](https://vercel.com/docs/v2/serverless-functions/introduction), with Vercel, you can use the [Create-React-App CLI](https://reactjs.org/docs/create-a-new-react-app.html#create-react-app) to initialize the project:
-
-```shell
-$ npx create-react-app my-app
+### install yarn
+https://yarnpkg.com/getting-started/install
 ```
+npm install -g yarn
+```
+
+### install dependencies
+```
+yarn install
+```
+
+### run the app locally
+```
+./node_modules/.bin/vercel dev
+```
+
+### deploy the app to vercel
+- fork this repository on github.com to your account
+- visit vercel.com and click get started and it will help you set things up
+- **important** once setup you need to override `Output Directory`
+    - `Settings` -> `General` -> `Output Directory` -> `build` and click `OVERRIDE`

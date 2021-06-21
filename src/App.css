@@ -12,6 +12,11 @@ main {
   padding: 72px 0;
   text-align: center;
 }
+
+body {
+  /* display: none; */
+}
+
 h1 {
   font-size: 45px;
 }

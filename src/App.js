@@ -1,21 +1,39 @@
 import React from 'react';
+import StoryViewer from './components/StoryViewer';
 import { useEffect, useState } from 'react';
 import './App.css';
 
+// reactjs (hooks)
+
 function App() {
+
+  // using hooks to grab setDate - store in client state
   const [date, setDate] = useState(null);
+
+  // loading data from the server
   useEffect(() => {
     async function getDate() {
-      const res = await fetch('/api/date');
+      const res = await fetch('/api/date'); // url
+      // /api/story -> /api/story.js
       const newDate = await res.text();
       setDate(newDate);
     }
     getDate();
   }, []);
+
+
+  // rendering mark up
   return (
     <main>
-      <h1>EASTSIDE RULEZ</h1>
-      <h1>EASTSIDE RULEZ 2</h1>
+      <h1>Recreate Wattpad</h1>
+      <StoryViewer title="Story #1"/>
+      <StoryViewer title="Story #2"/>
+      <StoryViewer title="Story #3"/>
+     
+
+
+
+
       <h1>Create React App + Go API</h1>
       <h2>
         Deployed with{' '}

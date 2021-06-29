@@ -1,54 +1,48 @@
 import React from "react";
 import StoryList from "../components/stories/StoryList";
-
-const DUMMY_DATA = [
-  {
-    id: "story1",
-    title: "Story #1",
-    author: "Author McAuthorson",
-    image:
-      "https://www.detroitlabs.com/wp-content/uploads/2018/02/alfons-morales-YLSwjSy7stw-unsplash.jpg",
-    address: "Meetupstreet 5, 12345 Meetup City",
-    summary:
-      "This is a first, amazing meetup which you definitely should not miss. It will be a lot of fun!",
-  },
-  {
-    id: "story2",
-    title: "Story #2",
-    author: "Author McAuthorson",
-    image:
-      "https://www.detroitlabs.com/wp-content/uploads/2018/02/alfons-morales-YLSwjSy7stw-unsplash.jpg",
-    address: "Meetupstreet 5, 12345 Meetup City",
-    summary:
-      "This is a first, amazing meetup which you definitely should not miss. It will be a lot of fun!",
-  },
-  {
-    id: "story3",
-    title: "Story #3",
-    author: "Author McAuthorson",
-    image:
-      "https://www.detroitlabs.com/wp-content/uploads/2018/02/alfons-morales-YLSwjSy7stw-unsplash.jpg",
-    address: "Meetupstreet 5, 12345 Meetup City",
-    summary:
-      "This is a first, amazing meetup which you definitely should not miss. It will be a lot of fun!",
-  },
-  {
-    id: "story4",
-    title: "Story #4",
-    author: "Author McAuthorson",
-    image:
-      "https://www.detroitlabs.com/wp-content/uploads/2018/02/alfons-morales-YLSwjSy7stw-unsplash.jpg",
-    address: "Meetupstreet 5, 12345 Meetup City",
-    summary:
-      "This is a first, amazing meetup which you definitely should not miss. It will be a lot of fun!",
-  },
-];
+import { useState, useEffect } from "react";
 
 function AllStoriesPage() {
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadedStories, setLoadedStories] = useState([]);
+
+  useEffect(() => {
+    setIsLoading(true);
+    fetch(
+      "https://share-our-stories-project-default-rtdb.firebaseio.com/stories.json"
+    )
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        const stories = [];
+
+        for (const key in data) {
+          const story = {
+            id: key,
+            ...data[key], //called the 'spread' operator, default JavaScript operator
+            //allows you to create key-data pairs and transforms the data into an array/a meetup object
+          };
+
+          stories.push(story);
+        }
+        setIsLoading(false);
+        setLoadedStories(stories);
+      });
+  }, []);
+
+  if (isLoading) {
+    return (
+      <section>
+        <p>Loading...</p>
+      </section>
+    );
+  }
+
   return (
     <section>
       <h1>All Stories</h1>
-      <StoryList stories={DUMMY_DATA}  />
+      <StoryList stories={loadedStories} />
     </section>
   );
 }

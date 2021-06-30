@@ -3,15 +3,32 @@ import classes from "./StoryItem.module.css";
 import Backdrop from "../Backdrop";
 import Modal from "../Modal";
 import Card from "../ui/Card";
-import { useState } from "react";
+import { useState,useContext } from "react";
+import LikedStoriesContext from "../../store/liked-stories-context";
 
 function StoryItem(props) {
-  const [modalIsOpen, setModalIsOpen] = useState(false);
 
+  const likedStoriesCtx = useContext(LikedStoriesContext);
+  const storyIsLiked = likedStoriesCtx.storyIsLiked(props.id);
+  function toggleLikedStoryStatusHandler() {
+    if (storyIsLiked) {
+      likedStoriesCtx.removeLikedStory(props.id);
+    } else {
+      likedStoriesCtx.addLikedStory({
+        id: props.id,
+        title: props.title,
+        summary: props.summary,
+        image: props.image,
+        author: props.author,
+      } );
+    }
+  }
+
+
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   function readHandler() {
     setModalIsOpen(true);
   }
-
   function closeModalHandler() {
     setModalIsOpen(false);
   }
@@ -29,7 +46,7 @@ function StoryItem(props) {
         </div>
         <div className={classes.actions} >
           <button className="btn btn--alt" onClick={readHandler}>READ</button>
-          <button className="btn btn--alt">LIKE</button>
+          <button className="btn btn--alt" onClick={toggleLikedStoryStatusHandler}>{storyIsLiked ? "Remove From Liked Stories" : "Like"}</button>
         </div>
         {modalIsOpen ? (
           <Modal

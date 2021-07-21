@@ -13,6 +13,8 @@ function StoryList(props) {
           title={story.title}
           author={story.author}
           summary={story.summary}
+          chapterOneTitle={story.chapterOneTitle}
+          chapterOneBody={story.chapterOneBody}
         />
       ))}
     </ul>

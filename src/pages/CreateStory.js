@@ -5,7 +5,25 @@ import React from "react";
 function CreateStoryPage() {
   const history = useHistory();
 
-  function createNewStoryHandler(storyData) { 
+  /*function createFirstChapter(chapterTitle, chapterBody, storyData) {
+    const chapter1 = { title: chapterTitle, body: chapterBody ,};
+    fetch(
+      "https://share-our-stories-project-default-rtdb.firebaseio.com/chapters.json",
+      {
+        method: "POST",
+        body: JSON.stringify(chapter1),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+  }*/
+
+  function createNewStoryHandler(
+    storyData,
+    enteredChapterTitle,
+    enteredChapter
+  ) {
     fetch(
       "https://share-our-stories-project-default-rtdb.firebaseio.com/stories.json",
       {
@@ -16,6 +34,7 @@ function CreateStoryPage() {
         },
       }
     ).then(() => {
+      //createFirstChapter(enteredChapterTitle, enteredChapter, storyData);
       history.replace("/");
     });
   }
@@ -23,9 +42,9 @@ function CreateStoryPage() {
   return (
     <section>
       <h1>Create New Story</h1>
-      <CreateNewStoryForm onCreateNewStory={createNewStoryHandler}/>
+      <CreateNewStoryForm onCreateNewStory={createNewStoryHandler} />
     </section>
   );
 }
- 
+
 export default CreateStoryPage;

@@ -26,6 +26,7 @@ function StoryItem(props) {
 
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
+
   function readHandler() {
     setModalIsOpen(true);
   }
@@ -50,6 +51,9 @@ function StoryItem(props) {
         </div>
         {modalIsOpen ? (
           <Modal
+            chapterOneTitle={props.chapterOneTitle}
+            chapterOneBody={props.chapterOneBody} 
+            text={props.summary}
             onCancel={closeModalHandler}
             onViewFullStory={closeModalHandler}
           />

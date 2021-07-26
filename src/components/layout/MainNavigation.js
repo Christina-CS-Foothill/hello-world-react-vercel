@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
 
 import classes from "./MainNavigation.module.css";
 
@@ -10,7 +10,7 @@ function MainNavigation() {
       <nav>
         <ul>
           <li>
-            <Link to="/">All Stories</Link>
+            <Link to="/all-stories">All Stories</Link>
           </li>
           <li>
             <Link to="/create-story">Create Story</Link>

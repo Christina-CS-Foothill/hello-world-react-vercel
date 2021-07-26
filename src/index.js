@@ -4,7 +4,8 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter } from "react-router-dom";
-import { LikedStoriesContextProvider } from "./store/liked-stories-context";
+import { LikedStoriesContextProvider } from "./context/liked-stories-context";
+import "bootstrap/dist/css/bootstrap.min.css";  
 
 ReactDOM.render(
   <LikedStoriesContextProvider>

@@ -26,11 +26,11 @@ function CreateNewStoryForm(props) {
         image: enteredImage,
         author: enteredAuthor,
         summary: enteredSummary,
-        chapterOneTitle: enteredChapterTitle,
-        chapterOneBody: enteredChapter
+        //chapterOneTitle: enteredChapterTitle,
+        //chapterOneBody: enteredChapter
     }
 
-    props.onCreateNewStory(storyData);
+    props.onCreateNewStory(storyData,enteredChapterTitle,enteredChapter);
   }
   return (
     <Card>
@@ -57,7 +57,7 @@ function CreateNewStoryForm(props) {
           ></textarea>
         </div>
         <div className={classes.control}>
-          <label htmlFor="title">Chapter Titke</label>
+          <label htmlFor="title">Chapter Title</label>
           <input type="text" required id="title" ref={chapterTitleInputRef} />
         </div>
         <div className={classes.control}>

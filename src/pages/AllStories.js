@@ -1,10 +1,14 @@
 import React from "react";
 import StoryList from "../components/stories/StoryList";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 function AllStoriesPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [loadedStories, setLoadedStories] = useState([]);
+  const { currentUser } = useAuth();
+
 
   useEffect(() => {
     setIsLoading(true);
@@ -41,6 +45,11 @@ function AllStoriesPage() {
 
   return (
     <section>
+      {!currentUser ? (
+        <Link to="/authentication/login">Log In?</Link>
+      ) : (
+        <Link to="/authentication/dashboard">View Profile?</Link>
+      )}
       <h1>All Stories</h1>
       <StoryList stories={loadedStories} />
     </section>

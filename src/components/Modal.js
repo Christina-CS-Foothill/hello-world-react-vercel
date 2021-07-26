@@ -17,7 +17,7 @@ function Modal(props) {
         {" "}
         Cancel
       </button>
-      <Link to="/full-story" chapterOneTitle={props.chapterOneTitle} chapterOneBody={props.chapterOneBody}>
+      <Link to="/full-story">
         <button className="btn" onClick={viewFullStoryHandler}>
           View Full Story
         </button>

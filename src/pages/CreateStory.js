@@ -5,8 +5,12 @@ import React from "react";
 function CreateStoryPage() {
   const history = useHistory();
 
-  /*function createFirstChapter(chapterTitle, chapterBody, storyData) {
-    const chapter1 = { title: chapterTitle, body: chapterBody ,};
+  function createFirstChapter(chapterTitle, chapterBody, storyId) {
+    const chapter1 = {
+      storyId: storyId,
+      title: chapterTitle,
+      body: chapterBody,
+    };
     fetch(
       "https://share-our-stories-project-default-rtdb.firebaseio.com/chapters.json",
       {
@@ -17,7 +21,7 @@ function CreateStoryPage() {
         },
       }
     );
-  }*/
+  }
 
   function createNewStoryHandler(
     storyData,
@@ -33,10 +37,17 @@ function CreateStoryPage() {
           "Content-Type": "application/json",
         },
       }
-    ).then(() => {
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        createFirstChapter(enteredChapterTitle, enteredChapter, data.name);
+        history.replace("/");
+      }); 
+
+    /*response.json().then(() => {
       //createFirstChapter(enteredChapterTitle, enteredChapter, storyData);
       history.replace("/");
-    });
+    });*/
   }
 
   return (

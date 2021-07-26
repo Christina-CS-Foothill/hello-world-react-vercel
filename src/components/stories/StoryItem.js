@@ -4,7 +4,7 @@ import Backdrop from "../Backdrop";
 import Modal from "../Modal";
 import Card from "../ui/Card";
 import { useState,useContext } from "react";
-import LikedStoriesContext from "../../store/liked-stories-context";
+import LikedStoriesContext from "../../context/liked-stories-context";
 
 function StoryItem(props) {
 
@@ -51,13 +51,11 @@ function StoryItem(props) {
         </div>
         {modalIsOpen ? (
           <Modal
-            chapterOneTitle={props.chapterOneTitle}
-            chapterOneBody={props.chapterOneBody} 
             text={props.summary}
             onCancel={closeModalHandler}
             onViewFullStory={closeModalHandler}
           />
-        ) : null}
+        ) : console.log(props.summary)}
         {modalIsOpen ? <Backdrop onCancel={closeModalHandler} /> : null}
       </li>
     </Card>

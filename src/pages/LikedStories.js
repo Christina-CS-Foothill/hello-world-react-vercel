@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import LikedStoriesContext from '../store/liked-stories-context';
+import LikedStoriesContext from '../context/liked-stories-context';
 import StoryList from '../components/stories/StoryList';
 
 function LikedStoriesPage() {

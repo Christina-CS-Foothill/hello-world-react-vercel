@@ -14,18 +14,20 @@ export function LikedStoriesContextProvider(props) {
 
   function addLikedStoryHandler(likedStory) {
     setUserLikedStories((prevUserLikedStories) => {
+      console.log(likedStory);
       return prevUserLikedStories.concat(likedStory);
     });
   }
 
   function removeLikedStoryHandler(storyId) {
     setUserLikedStories((prevUserLikedStories) => {
-      return prevUserLikedStories.filter((story) => story.id !== storyId);
+      return prevUserLikedStories.filter((story) => story.storyId !== storyId);
     });
   }
 
   function storyIsLikedHandler(storyId) {
-    return userLikedStories.some((story) => story.id === storyId);
+    console.log(storyId)
+    return userLikedStories.some((story) => story.storyId === storyId);
   }
 
   const context = {

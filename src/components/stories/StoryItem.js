@@ -10,14 +10,18 @@ import { Link } from "react-router-dom";
 
 function StoryItem(props) {
   const likedStoriesCtx = useContext(LikedStoriesContext);
-  const storyIsLiked = likedStoriesCtx.storyIsLiked(props.id);
+  const storyIsLiked = likedStoriesCtx.storyIsLiked(props.storyId);
+  console.log(storyIsLiked);
   const { currentUser } = useAuth();
+
   function toggleLikedStoryStatusHandler() {
+    
     if (storyIsLiked) {
-      likedStoriesCtx.removeLikedStory(props.id);
+      likedStoriesCtx.removeLikedStory(props.storyId);
     } else {
       likedStoriesCtx.addLikedStory({
-        id: props.id,
+        storyId: props.storyId,
+        userId: props.userId,
         title: props.title,
         summary: props.summary,
         image: props.image,
@@ -48,7 +52,15 @@ function StoryItem(props) {
         </div>
         <div className={classes.actions}>
           {currentUser && props.userId === currentUser.uid ? (
-            <Link to="/edit-story">
+            <Link to={{
+              pathname: "/edit-story",
+              state: {
+                storyId: props.storyId,
+                image: props.image,
+                title: props.title,
+                author: props.author,
+                summary: props.summary
+              }}}>
               <button>Edit Story</button>
             </Link>
           ) : null}

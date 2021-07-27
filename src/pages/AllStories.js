@@ -27,7 +27,6 @@ function AllStoriesPage() {
             ...data[key], //called the 'spread' operator, default JavaScript operator
             //allows you to create key-data pairs and transforms the data into an array/a meetup object
           };
-
           stories.push(story);
         }
         setIsLoading(false);

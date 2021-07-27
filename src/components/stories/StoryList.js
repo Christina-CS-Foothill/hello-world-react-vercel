@@ -8,6 +8,7 @@ function StoryList(props) {
       {props.stories.map((story) => (
         <StoryItem
           key={story.id}
+          storyId={story.id}
           userId={story.userId}
           image={story.image}
           title={story.title}

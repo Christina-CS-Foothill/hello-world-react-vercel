@@ -5,28 +5,8 @@ import React from "react";
 function CreateStoryPage() {
   const history = useHistory();
 
-  function createFirstChapter(chapterTitle, chapterBody, storyId) {
-    const chapter1 = {
-      storyId: storyId,
-      title: chapterTitle,
-      body: chapterBody,
-    };
-    fetch(
-      "https://share-our-stories-project-default-rtdb.firebaseio.com/chapters.json",
-      {
-        method: "POST",
-        body: JSON.stringify(chapter1),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-  }
-
   function createNewStoryHandler(
     storyData,
-    enteredChapterTitle,
-    enteredChapter
   ) {
     fetch(
       "https://share-our-stories-project-default-rtdb.firebaseio.com/stories.json",
@@ -40,14 +20,8 @@ function CreateStoryPage() {
     )
       .then((response) => response.json())
       .then((data) => {
-        createFirstChapter(enteredChapterTitle, enteredChapter, data.name);
         history.replace("/");
       }); 
-
-    /*response.json().then(() => {
-      //createFirstChapter(enteredChapterTitle, enteredChapter, storyData);
-      history.replace("/");
-    });*/
   }
 
   return (

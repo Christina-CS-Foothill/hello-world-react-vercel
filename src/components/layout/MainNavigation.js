@@ -1,6 +1,5 @@
 import React from "react";
-import { Link, Route } from "react-router-dom";
-
+import { Link } from "react-router-dom";
 import classes from "./MainNavigation.module.css";
 
 function MainNavigation() {

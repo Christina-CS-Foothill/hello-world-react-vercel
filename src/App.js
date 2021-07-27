@@ -5,27 +5,15 @@ import CreateStoryPage from "./pages/CreateStory";
 import LikedStoriesPage from "./pages/LikedStories";
 import FullStoryPage from "./pages/FullStory";
 import Layout from "./components/layout/Layout";
-//import { useEffect, useState } from "react";
 import "./App.css";
 import AuthenticationHome from "./pages/authentication/AuthenticationHome";
 import { AuthProvider } from "./context/AuthContext";
+import MyStories from "./pages/MyStories";
+import EditStoryForm from "./components/stories/EditStoryForm";
 
 // reactjs (hooks)
 
 function App() {
-  /*// using hooks to grab setDate - store in client state
-  const [date, setDate] = useState(null);
-
-  // loading data from the server
-  useEffect(() => {
-    async function getDate() {
-      const res = await fetch("/api/date"); // url
-      // /api/story -> /api/story.js
-      const newDate = await res.text();
-      setDate(newDate);
-    }
-    getDate();
-  }, []);*/
 
   // rendering mark up
   return (
@@ -51,6 +39,12 @@ function App() {
               </Route>
               <Route path="/full-story">
                 <FullStoryPage />
+              </Route>
+              <Route path="/my-stories">
+                <MyStories />
+              </Route>
+              <Route path="/edit-story">
+                <EditStoryForm/>
               </Route>
             </Layout>
           </Switch>

@@ -8,13 +8,11 @@ function StoryList(props) {
       {props.stories.map((story) => (
         <StoryItem
           key={story.id}
-          id={story.id}
+          userId={story.userId}
           image={story.image}
           title={story.title}
           author={story.author}
           summary={story.summary}
-          chapterOneTitle={story.chapterOneTitle}
-          chapterOneBody={story.chapterOneBody}
         />
       ))}
     </ul>

@@ -47,7 +47,7 @@ function StoryItem(props) {
           <p>{props.summary}</p>
         </div>
         <div className={classes.actions}>
-          {props.userId === currentUser.uid ? (
+          {currentUser && props.userId === currentUser.uid ? (
             <Link to="/edit-story">
               <button>Edit Story</button>
             </Link>

@@ -26,7 +26,7 @@ export function LikedStoriesContextProvider(props) {
   }
 
   function storyIsLikedHandler(storyId) {
-    console.log(storyId)
+    //console.log(storyId)
     return userLikedStories.some((story) => story.storyId === storyId);
   }
 

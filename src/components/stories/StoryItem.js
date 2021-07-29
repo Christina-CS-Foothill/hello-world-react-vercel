@@ -1,9 +1,7 @@
 import React from "react";
 import classes from "./StoryItem.module.css";
-import Backdrop from "../Backdrop";
-import Modal from "../Modal";
 import Card from "../ui/Card";
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import LikedStoriesContext from "../../context/liked-stories-context";
 import { useAuth } from "../../context/AuthContext";
 import { Link } from "react-router-dom";
@@ -11,11 +9,10 @@ import { Link } from "react-router-dom";
 function StoryItem(props) {
   const likedStoriesCtx = useContext(LikedStoriesContext);
   const storyIsLiked = likedStoriesCtx.storyIsLiked(props.storyId);
-  console.log(storyIsLiked);
+  //console.log(storyIsLiked);
   const { currentUser } = useAuth();
 
   function toggleLikedStoryStatusHandler() {
-    
     if (storyIsLiked) {
       likedStoriesCtx.removeLikedStory(props.storyId);
     } else {
@@ -24,19 +21,11 @@ function StoryItem(props) {
         userId: props.userId,
         title: props.title,
         summary: props.summary,
+        content: props.content,
         image: props.image,
         author: props.author,
       });
     }
-  }
-
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-
-  function readHandler() {
-    setModalIsOpen(true);
-  }
-  function closeModalHandler() {
-    setModalIsOpen(false);
   }
 
   return (
@@ -52,21 +41,35 @@ function StoryItem(props) {
         </div>
         <div className={classes.actions}>
           {currentUser && props.userId === currentUser.uid ? (
-            <Link to={{
-              pathname: "/edit-story",
-              state: {
-                storyId: props.storyId,
-                image: props.image,
-                title: props.title,
-                author: props.author,
-                summary: props.summary
-              }}}>
+            <Link
+              to={{
+                pathname: "/edit-story",
+                state: {
+                  storyId: props.storyId,
+                  image: props.image,
+                  title: props.title,
+                  author: props.author,
+                  summary: props.summary,
+                  content: props.content,
+                },
+              }}
+            >
               <button>Edit Story</button>
             </Link>
           ) : null}
-          <button className="btn btn--alt" onClick={readHandler}>
-            READ
-          </button>
+          <Link to={{
+                pathname: "/full-story",
+                state: {
+                  storyId: props.storyId,
+                  image: props.image,
+                  title: props.title,
+                  author: props.author,
+                  summary: props.summary,
+                  content: props.content,
+                },
+              }}>
+            <button className="btn btn--alt">READ</button>
+          </Link>
           <button
             className="btn btn--alt"
             onClick={toggleLikedStoryStatusHandler}
@@ -74,14 +77,6 @@ function StoryItem(props) {
             {storyIsLiked ? "Remove From Liked Stories" : "Like"}
           </button>
         </div>
-        {modalIsOpen ? (
-          <Modal
-            text={props.summary}
-            onCancel={closeModalHandler}
-            onViewFullStory={closeModalHandler}
-          />
-        ) : null}
-        {modalIsOpen ? <Backdrop onCancel={closeModalHandler} /> : null}
       </li>
     </Card>
   );

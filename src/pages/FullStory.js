@@ -1,28 +1,21 @@
 import React from "react";
-import ChapterList from "../components/chapters/ChapterList";
-
-
-const DUMMY_DATA = [
-  {
-    chapterTitle: "Chapter 1",
-    body:
-      "This is the first chapter of this very amazing story. Behold its greatness. I bet you can't wait to find out what happens next!",
-  },
-  {
-    chapterTitle: "Chapter 2",
-    body:
-      "This is the second chapter of this very amazing story. Behold its greatness. I bet you can't wait to find out what happens next!",
-  },
-  {
-    chapterTitle: "Chapter 3",
-    body:
-      "This is the third chapter of this very amazing story. Behold its greatness. I bet you can't wait to find out what happens next!",
-  },
-];
+import { useLocation } from "react-router-dom";
+import Card from "../components/ui/Card";
 
 function FullStoryPage(props) {
+  const location = useLocation();
+  //const { storyId } = location.state;
+  //const { image } = location.state;
+  const { title } = location.state;
+  const { author } = location.state;
+  const { summary } = location.state;
+  const { content } = location.state;
   return (
-   <ChapterList chapters={DUMMY_DATA}/>
+    <Card>
+      <h2>{title}</h2>
+      <h5>{author}</h5>
+      <p>{content}</p>
+    </Card>
   );
 }
 

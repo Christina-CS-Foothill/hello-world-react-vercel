@@ -10,6 +10,7 @@ function CreateNewStoryForm(props) {
   const imageInputRef = useRef();
   const authorInputRef = useRef();
   const summaryInputRef = useRef();
+  const contentInputRef = useRef();
   const { currentUser } = useAuth();
 
   function submitHandler(event) {
@@ -19,12 +20,14 @@ function CreateNewStoryForm(props) {
     const enteredImage = imageInputRef.current.value;
     const enteredAuthor = authorInputRef.current.value;
     const enteredSummary = summaryInputRef.current.value;
+    const enteredContent = contentInputRef.current.value;
 
     const storyData = {
       title: enteredTitle,
       image: enteredImage,
       author: enteredAuthor,
       summary: enteredSummary,
+      content: enteredContent,
       userId: currentUser.uid,
     };
 
@@ -53,8 +56,17 @@ function CreateNewStoryForm(props) {
               <textarea
                 id="summary"
                 required
-                rows="5"
+                rows="3"
                 ref={summaryInputRef}
+              ></textarea>
+            </div>
+            <div className={classes.control}>
+              <label htmlFor="story">Story</label>
+              <textarea
+                id="story"
+                required
+                rows="10"
+                ref={contentInputRef}
               ></textarea>
             </div>
             <div className={classes.actions}>

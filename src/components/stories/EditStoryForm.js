@@ -11,6 +11,7 @@ function EditStoryForm(props) {
   const imageInputRef = useRef();
   const authorInputRef = useRef();
   const summaryInputRef = useRef();
+  const contentInputRef = useRef();
   const { currentUser } = useAuth();
   const location = useLocation();
   const { storyId } = location.state;
@@ -18,6 +19,7 @@ function EditStoryForm(props) {
   const { title } = location.state;
   const { author } = location.state;
   const { summary } = location.state;
+  const { content } = location.state;
   const history = useHistory();
   
 
@@ -28,12 +30,14 @@ function EditStoryForm(props) {
     const enteredImage = imageInputRef.current.value;
     const enteredAuthor = authorInputRef.current.value;
     const enteredSummary = summaryInputRef.current.value;
+    const enteredContent = contentInputRef.current.value;
 
     const storyData = {
       title: enteredTitle,
       image: enteredImage,
       author: enteredAuthor,
       summary: enteredSummary,
+      content: enteredContent,
       userId: currentUser.uid,
     };
     updateStory(storyData);
@@ -72,9 +76,19 @@ function EditStoryForm(props) {
               <textarea
                 id="summary"
                 required
-                rows="5"
+                rows="3"
                 ref={summaryInputRef}
                 defaultValue={summary}
+              ></textarea>
+            </div>
+            <div className={classes.control}>
+              <label htmlFor="summary">Story</label>
+              <textarea
+                id="summary"
+                required
+                rows="10"
+                ref={contentInputRef}
+                defaultValue={content}
               ></textarea>
             </div>
             <div className={classes.actions}>

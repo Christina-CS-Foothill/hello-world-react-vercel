@@ -9,7 +9,6 @@ function AllStoriesPage() {
   const [loadedStories, setLoadedStories] = useState([]);
   const { currentUser } = useAuth();
 
-
   useEffect(() => {
     setIsLoading(true);
     fetch(

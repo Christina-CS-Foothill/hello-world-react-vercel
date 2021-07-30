@@ -6,7 +6,7 @@ function StoryList(props) {
   return (
     <ul className={classes.list}>
       {props.stories.map((story) => (
-        console.log(story.content),
+        //console.log(story.content),
         <StoryItem
           key={story.storyId || story.id}
           storyId={story.storyId || story.id}

@@ -14,7 +14,7 @@ export function LikedStoriesContextProvider(props) {
 
   function addLikedStoryHandler(likedStory) {
     setUserLikedStories((prevUserLikedStories) => {
-      console.log(likedStory);
+      //console.log(likedStory);
       return prevUserLikedStories.concat(likedStory);
     });
   }

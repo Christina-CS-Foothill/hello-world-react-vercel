@@ -8,7 +8,7 @@ function FullStoryPage(props) {
   //const { image } = location.state;
   const { title } = location.state;
   const { author } = location.state;
-  const { summary } = location.state;
+  //const { summary } = location.state;
   const { content } = location.state;
   return (
     <Card>

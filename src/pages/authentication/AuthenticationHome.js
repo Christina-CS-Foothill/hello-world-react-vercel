@@ -8,64 +8,83 @@ import Login from "./Login";
 import PrivateRoute from "./PrivateRoute";
 import ForgotPassword from "./ForgotPassword";
 import UpdateProfile from "./UpdateProfile";
+import { useAuth } from "../../context/AuthContext";
 
-function foo2(history, steps, delay) {
+function demoSteps(history, steps, delay) {
   if (steps.length === 0) {
     return;
   } else {
     var toCall = steps.pop();
     toCall();
     setTimeout(function() {
-      foo2(history, steps, delay);
+      demoSteps(history, steps, delay);
     }, delay);
   }
 }
 
-/*function foo(history) {
-  history.push("/authentication/signup");
-  // history.push('/create-story')
-  // first get email
-  // password
-  // click button
-  // document.querySelector('input[type=email]')
-
-  setTimeout(function() {
-    document.querySelector("input[type=email]").value = "joe2@example.com";
-
-    setTimeout(function() {
-      document.querySelector("input[type=password]").value = "password";
-
-      setTimeout(function() {
-        document.querySelector("#password-confirm input").value = "password";
-
-        setTimeout(function() {
-          document.querySelector("button[type=submit]").click();
-        }, 1000);
-      }, 1000);
-    }, 1000);
-  }, 1000);
-}*/
-
 export default function AuthenticationHome() {
   const history = useHistory();
+  const { logout } = useAuth();
+  //demo story values
+  const demoTitle = "The Stellar One";
+  const demoImage =
+    "https://images.squarespace-cdn.com/content/v1/5493706de4b0ecaa4047b871/1419316919757-CIM2P3OPPFQVAVNP7YX5/image-asset.png?format=750w";
+  const demoAuthor = "Daniel Errico";
+  const demoSummary =
+    "Long ago, there was a rock floating through space, searching for where she belonged. She would visit many planets and travel to the farthest reaches of the universe, but would she find what she was looking for? The Stellar One is a tale of self-esteem and self-discovery.";
+  const demoContent =
+    "When the universe was young the sky was filled with planets, and stars, and stardust, and many many rocks. One of these rocks was a bit more special than the rest.  She was unlike any that came before her. She was a kind and happy rock, who always floated near a big blue planet.Sometimes when the light hit her surface, she would glow a brilliant green.  At times like those, she almost didn't look like a rock at all. As the sky moved from day to day, and week to week, the rock would see planets far off in the distance.";
 
   return (
     <AuthProvider>
       <Button
         onClick={function() {
-          foo2(
+          demoSteps(
             history,
             [
-              function() {
-                history.push("/create-story");
+              async function() {
+                try {
+                  await logout();
+                  history.push("./authentication/signup");
+                } catch {
+                  console.log("Failed to log out.");
+                }
               },
-              function () {
+              function() {
                 setTimeout(() => {}, 5000);
               },
               function() {
-                document.querySelector('button').click();
+                history.push("/my-stories");
               },
-              function () {
+              function() {
+                document.getElementById("story").value =
+                  demoContent;
+              },
+              function() {
+                document.getElementById("summary").value =
+                  demoSummary;
+              },
+              function() {
+                document.getElementById("author").value = demoAuthor;
+              },
+              function() {
+                document.querySelector("input[type=url]").value =
+                  demoImage;
+              },
+              function() {
+                document.querySelector("input[type=text]").value =
+                  demoTitle;
+              },
+              function() {
+                history.push("/create-story");
+              },
+              function() {
+                setTimeout(() => {}, 5000);
+              },
+              function() {
+                document.querySelector("button").click();
+              },
+              function() {
                 setTimeout(() => {}, 3000);
               },
               function() {

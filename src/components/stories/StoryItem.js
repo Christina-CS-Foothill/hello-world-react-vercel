@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 function StoryItem(props) {
   const likedStoriesCtx = useContext(LikedStoriesContext);
   const storyIsLiked = likedStoriesCtx.storyIsLiked(props.storyId);
+
   //console.log(storyIsLiked);
   const { currentUser } = useAuth();
 
@@ -27,6 +28,12 @@ function StoryItem(props) {
       });
     }
   }
+  //check if the story is liked
+  //if story is liked, then unlike it.
+  //set isLiked to false/the opp of what it curr is
+  //update status is firebase
+  //if story is not liked, then set isLiked to true
+  //udpate status in firebase
 
   return (
     <Card>
@@ -36,7 +43,17 @@ function StoryItem(props) {
         </div>
         <div className={classes.content}>
           <h3>{props.title}</h3>
-          <h4>{props.author}</h4>
+          <Link
+            to={{
+              pathname: "/all-author-stories",
+              state: {
+                userId: props.userId,
+                author: props.author,
+              },
+            }}
+          >
+            {props.author}
+          </Link>
           <p>{props.summary}</p>
         </div>
         <div className={classes.actions}>
@@ -48,7 +65,6 @@ function StoryItem(props) {
                   storyId: props.storyId,
                   image: props.image,
                   title: props.title,
-                  author: props.author,
                   summary: props.summary,
                   content: props.content,
                 },
@@ -57,25 +73,29 @@ function StoryItem(props) {
               <button>Edit Story</button>
             </Link>
           ) : null}
-          <Link to={{
-                pathname: "/full-story",
-                state: {
-                  storyId: props.storyId,
-                  image: props.image,
-                  title: props.title,
-                  author: props.author,
-                  summary: props.summary,
-                  content: props.content,
-                },
-              }}>
-            <button className="btn btn--alt">READ</button>
-          </Link>
-          <button
-            className="btn btn--alt"
-            onClick={toggleLikedStoryStatusHandler}
+          <Link
+            to={{
+              pathname: "/full-story",
+              state: {
+                storyId: props.storyId,
+                image: props.image,
+                title: props.title,
+                author: props.author,
+                summary: props.summary,
+                content: props.content,
+              },
+            }}
           >
-            {storyIsLiked ? "Remove From Liked Stories" : "Like"}
-          </button>
+            <button className="btn btn--alt" id="read-button">READ</button>
+          </Link>
+          {currentUser ? (
+            <button
+              className="btn btn--alt"
+              onClick={toggleLikedStoryStatusHandler}
+            >
+              {storyIsLiked ? "Remove From Liked Stories" : "Like"}
+            </button>
+          ) : null}
         </div>
       </li>
     </Card>

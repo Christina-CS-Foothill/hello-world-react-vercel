@@ -29,7 +29,6 @@ export default function AuthenticationHome() {
   const demoTitle = "The Stellar One";
   const demoImage =
     "https://images.squarespace-cdn.com/content/v1/5493706de4b0ecaa4047b871/1419316919757-CIM2P3OPPFQVAVNP7YX5/image-asset.png?format=750w";
-  const demoAuthor = "Daniel Errico";
   const demoSummary =
     "Long ago, there was a rock floating through space, searching for where she belonged. She would visit many planets and travel to the farthest reaches of the universe, but would she find what she was looking for? The Stellar One is a tale of self-esteem and self-discovery.";
   const demoContent =
@@ -65,9 +64,6 @@ export default function AuthenticationHome() {
                   demoSummary;
               },
               function() {
-                document.getElementById("author").value = demoAuthor;
-              },
-              function() {
                 document.querySelector("input[type=url]").value =
                   demoImage;
               },
@@ -82,7 +78,7 @@ export default function AuthenticationHome() {
                 setTimeout(() => {}, 5000);
               },
               function() {
-                document.querySelector("button").click();
+                document.getElementById("read-button").click();
               },
               function() {
                 setTimeout(() => {}, 3000);

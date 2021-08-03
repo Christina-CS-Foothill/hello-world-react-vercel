@@ -26,7 +26,7 @@ function CreateStoryPage() {
 
   return (
     <section>
-      <h1>Create New Story</h1>
+      <h1>New Story</h1>
       <CreateNewStoryForm onCreateNewStory={createNewStoryHandler} />
     </section>
   );

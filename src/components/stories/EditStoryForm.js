@@ -9,7 +9,6 @@ import firebase from "firebase";
 function EditStoryForm(props) {
   const titleInputRef = useRef();
   const imageInputRef = useRef();
-  const authorInputRef = useRef();
   const summaryInputRef = useRef();
   const contentInputRef = useRef();
   const { currentUser } = useAuth();
@@ -17,7 +16,6 @@ function EditStoryForm(props) {
   const { storyId } = location.state;
   const { image } = location.state;
   const { title } = location.state;
-  const { author } = location.state;
   const { summary } = location.state;
   const { content } = location.state;
   const history = useHistory();
@@ -28,14 +26,13 @@ function EditStoryForm(props) {
 
     const enteredTitle = titleInputRef.current.value;
     const enteredImage = imageInputRef.current.value;
-    const enteredAuthor = authorInputRef.current.value;
     const enteredSummary = summaryInputRef.current.value;
     const enteredContent = contentInputRef.current.value;
 
     const storyData = {
       title: enteredTitle,
       image: enteredImage,
-      author: enteredAuthor,
+      author: currentUser.email.substr(0, currentUser.email.indexOf("@")),
       summary: enteredSummary,
       content: enteredContent,
       userId: currentUser.uid,
@@ -59,6 +56,10 @@ function EditStoryForm(props) {
       {currentUser ? (
         <Card>
           <form className={classes.form} onSubmit={submitHandler}>
+          <div>
+              <strong>Created By: </strong>{" "}
+              {currentUser.email.substr(0, currentUser.email.indexOf("@"))}
+            </div>
             <div className={classes.control}>
               <label htmlFor="title">Title</label>
               <input type="text" required id="title" ref={titleInputRef} defaultValue={title}/>
@@ -66,10 +67,6 @@ function EditStoryForm(props) {
             <div className={classes.control}>
               <label htmlFor="image">Story Image</label>
               <input type="url" required id="image" ref={imageInputRef} defaultValue={image}/>
-            </div>
-            <div className={classes.control}>
-              <label htmlFor="author">Author</label>
-              <input type="text" required id="author" ref={authorInputRef} defaultValue={author} />
             </div>
             <div className={classes.control}>
               <label htmlFor="summary">Summary</label>

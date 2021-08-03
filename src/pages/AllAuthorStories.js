@@ -1,15 +1,15 @@
-import React, { useContext, useEffect, useState } from 'react';
-import LikedStoriesContext from '../context/liked-stories-context';
-import StoryList from '../components/stories/StoryList';
-import { useAuth } from '../context/AuthContext';
+import React from "react";
+import StoryList from "../components/stories/StoryList";
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
-function LikedStoriesPage() {
 
-  const likedStoriesCtx = useContext(LikedStoriesContext);
-
+function AllAuthorStoriesPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [loadedStories, setLoadedStories] = useState([]);
-  const { currentUser } = useAuth();
+  const location = useLocation();
+  const { userId } = location.state;
+  const { author } = location.state;
 
   useEffect(() => {
     setIsLoading(true);
@@ -29,7 +29,8 @@ function LikedStoriesPage() {
             //allows you to create key-data pairs and transforms the data into an array/a meetup object
           };
 
-          if (story.userId) {
+          if (story.userId !== userId) {
+              console.log(userId);
             continue;
           } else {
             stories.push(story);
@@ -47,19 +48,13 @@ function LikedStoriesPage() {
       </section>
     );
   }
-  let content;
 
-  if(LikedStoriesContext.totalLikedStories === 0){
-    content = <p>You haven't liked any stories yet. Start adding some?</p>
-  } else {
-    content =  <StoryList stories={likedStoriesCtx.likedStories}/>
-  }
+  return (
+    <section>
+      <h1>Stories Created By: {author}</h1> 
+      <StoryList stories={loadedStories} />
+    </section>
+  );
+}
 
-    return <section>
-      <h1>My Liked Stories</h1>
-      {content}
-    </section>;
-  }
-  
-  export default LikedStoriesPage;
-  
+export default AllAuthorStoriesPage;

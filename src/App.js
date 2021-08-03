@@ -10,6 +10,7 @@ import AuthenticationHome from "./pages/authentication/AuthenticationHome";
 import { AuthProvider } from "./context/AuthContext";
 import MyStories from "./pages/MyStories";
 import EditStoryForm from "./components/stories/EditStoryForm";
+import AllAuthorStoriesPage from "./pages/AllAuthorStories";
 
 // reactjs (hooks)
 
@@ -45,6 +46,9 @@ function App() {
               </Route>
               <Route path="/edit-story">
                 <EditStoryForm/>
+              </Route>
+              <Route path="/all-author-stories">
+                <AllAuthorStoriesPage/>
               </Route>
             </Layout>
           </Switch>

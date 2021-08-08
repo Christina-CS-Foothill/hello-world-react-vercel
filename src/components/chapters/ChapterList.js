@@ -5,11 +5,11 @@ function ChapterList(props) {
   return (
     <ul>
       {props.chapters.map((chapter) => (
+        console.log(chapter.chapterContent),
         <ChapterItem
-          chapterTitle={chapter.chapterTitle}
-          body={chapter.body}
-          storyId={chapter.storyId}
-          chapterId={chapter.chapterId}
+          key={chapter.chapterNumber}
+          chapterNumber={chapter.chapterNumber}
+          chapterContent={chapter.chapterContent}
         />
       ))}
     </ul>

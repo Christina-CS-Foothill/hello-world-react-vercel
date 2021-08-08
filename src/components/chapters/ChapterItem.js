@@ -5,8 +5,8 @@ function ChapterItem(props) {
   return (
     <Card>
       <div>
-        <h2>{props.chapterTitle}</h2>
-        <p>{props.body}</p>
+        <h2>{props.chapterNumber}</h2>
+        <p>{props.chapterContent}</p>
       </div>
     </Card>
   );

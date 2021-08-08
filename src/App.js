@@ -11,11 +11,12 @@ import { AuthProvider } from "./context/AuthContext";
 import MyStories from "./pages/MyStories";
 import EditStoryForm from "./components/stories/EditStoryForm";
 import AllAuthorStoriesPage from "./pages/AllAuthorStories";
+import NewChapterPage from "./pages/NewChapter";
+import EditChapterPage from "./pages/EditChapter";
 
 // reactjs (hooks)
 
 function App() {
-
   // rendering mark up
   return (
     <div>
@@ -45,10 +46,16 @@ function App() {
                 <MyStories />
               </Route>
               <Route path="/edit-story">
-                <EditStoryForm/>
+                <EditStoryForm />
               </Route>
               <Route path="/all-author-stories">
-                <AllAuthorStoriesPage/>
+                <AllAuthorStoriesPage />
+              </Route>
+              <Route path="/new-chapter">
+                <NewChapterPage />
+              </Route>
+              <Route path="/edit-chapter">
+                <EditChapterPage/>
               </Route>
             </Layout>
           </Switch>

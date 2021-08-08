@@ -10,7 +10,7 @@ export default function EditStoryPage() {
     }
 
   return <section>
-  <h1>Create New Story</h1>
+  
   <EditStoryForm onEditStory={editStoryHandler} />
 </section>
 }

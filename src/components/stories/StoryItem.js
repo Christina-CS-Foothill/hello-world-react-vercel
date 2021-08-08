@@ -25,7 +25,7 @@ function StoryItem(props) {
         content: props.content,
         image: props.image,
         author: props.author,
-      });
+      }, currentUser.uid);
     }
   }
   //check if the story is liked

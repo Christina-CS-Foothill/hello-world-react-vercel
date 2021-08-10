@@ -87,7 +87,7 @@ export function LikedStoriesContextProvider(props) {
           //allows you to create key-data pairs and transforms the data into an array/a meetup object
         };
 
-        //check the user id
+        /*//check the user id
         if (storyLikeObject.userId === currentUser.uid) {
             //console.log(storyLikeObject.id);
             //console.log(storyId);
@@ -98,7 +98,7 @@ export function LikedStoriesContextProvider(props) {
             }
         } else {
           continue;
-        }
+        }*/
       }
     })
 

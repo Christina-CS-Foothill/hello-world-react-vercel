@@ -14,6 +14,7 @@ import AllAuthorStoriesPage from "./pages/AllAuthorStories";
 import NewChapterPage from "./pages/NewChapter";
 import EditChapterPage from "./pages/EditChapter";
 
+
 // reactjs (hooks)
 
 function App() {
@@ -55,7 +56,7 @@ function App() {
                 <NewChapterPage />
               </Route>
               <Route path="/edit-chapter">
-                <EditChapterPage/>
+                <EditChapterPage />
               </Route>
             </Layout>
           </Switch>

@@ -1,5 +1,5 @@
 import React from "react";
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import Card from "../ui/Card";
 import classes from "./CreateNewStoryForm.module.css";
 import { useAuth } from "../../context/AuthContext";
@@ -20,26 +20,33 @@ function EditStoryForm(props) {
   const { summary } = location.state;
   //const { content } = location.state;
   const history = useHistory();
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadedChapters, setLoadedChapters] = useState([]);
 
   var chapCount = 1;
   var chapters = [];
   var story = firebase.database().ref("/stories/" + storyId);
 
-  story.on("value", (snapshot) => {
-    //console.log(snapshot.val());
-    let snap = snapshot.val();
-    for (const str in snap) {
-      if (str.includes("chapter")) {
-        const chapter = {
-          storyId: storyId,
-          chapterName: chapCount,
-          chapterContent: snap[str],
-        };
-        chapters.push(chapter);
-        chapCount++;
+  useEffect(() => {
+    setIsLoading(true);
+    story.on("value", (snapshot) => {
+      //console.log(snapshot.val());
+      let snap = snapshot.val();
+      for (const str in snap) {
+        if (str.includes("chapter")) {
+          const chapter = {
+            storyId: storyId,
+            chapterName: chapCount,
+            chapterContent: snap[str],
+          };
+          chapters.push(chapter);
+          chapCount++;
+        }
       }
-    }
-  });
+      setIsLoading(false);
+      setLoadedChapters(chapters);
+    });
+  }, []);
 
   console.log(chapters);
 
@@ -50,15 +57,6 @@ function EditStoryForm(props) {
     const enteredImage = imageInputRef.current.value;
     const enteredSummary = summaryInputRef.current.value;
     //const enteredContent = contentInputRef.current.value;
-
-    const storyData = {
-      title: enteredTitle,
-      image: enteredImage,
-      author: currentUser.email.substr(0, currentUser.email.indexOf("@")),
-      summary: enteredSummary,
-      //content: enteredContent,
-      userId: currentUser.uid,
-    };
 
     updateStory(enteredTitle, enteredImage, enteredSummary);
     history.push("/my-stories");
@@ -116,7 +114,13 @@ function EditStoryForm(props) {
                 defaultValue={summary}
               ></textarea>
             </div>
-            <ChapterEditItemList chapters={chapters} />
+            {isLoading ? (
+              <section>
+                <p>Loading...</p>
+              </section>
+            ) : (
+              <ChapterEditItemList chapters={loadedChapters} />
+            )}
             <div className={classes.actions}>
               <button id="update-story-btn" onClick={updateStoryHandler}>
                 Update Story

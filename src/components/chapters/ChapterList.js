@@ -5,7 +5,7 @@ function ChapterList(props) {
   return (
     <ul>
       {props.chapters.map((chapter) => (
-        console.log(chapter.chapterContent),
+        //console.log(chapter.chapterContent),
         <ChapterItem
           key={chapter.chapterNumber}
           chapterNumber={chapter.chapterNumber}

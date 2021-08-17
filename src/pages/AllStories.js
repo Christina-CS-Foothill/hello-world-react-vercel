@@ -50,6 +50,11 @@ function AllStoriesPage() {
       )}
       <h1>All Stories</h1>
       <StoryList stories={loadedStories} />
+      <div>
+        <Link to="/about">
+          <strong>About</strong>
+        </Link>
+      </div>
     </section>
   );
 }

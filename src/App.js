@@ -13,6 +13,7 @@ import EditStoryForm from "./components/stories/EditStoryForm";
 import AllAuthorStoriesPage from "./pages/AllAuthorStories";
 import NewChapterPage from "./pages/NewChapter";
 import EditChapterPage from "./pages/EditChapter";
+import AboutPage from "./pages/About";
 
 // reactjs (hooks)
 
@@ -57,10 +58,14 @@ function App() {
               <Route path="/edit-chapter">
                 <EditChapterPage />
               </Route>
+              <Route path="/about">
+                <AboutPage />
+              </Route>
             </Layout>
           </Switch>
         </AuthProvider>
       </Router>
+      <div>ifjeiorje</div>
     </div>
   );
 }

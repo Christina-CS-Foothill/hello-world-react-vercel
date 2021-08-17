@@ -10,9 +10,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 ReactDOM.render(
   <LikedStoriesContextProvider>
     <BrowserRouter>
-    <div>Hi</div>
       <App />
-      
     </BrowserRouter>
   </LikedStoriesContextProvider>,
   document.getElementById("root")

@@ -98,7 +98,7 @@ function MainNavigation() {
                       },
                       function () {
                         document.querySelector("input[type=password]").value =
-                          "password";
+                          "Pa$$worD_1960";
                       },
                       function () {
                         document.querySelector("input[type=email]").value =
